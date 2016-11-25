@@ -507,6 +507,35 @@
     [FBSDKAppEvents activateApp];
 }
 
+- (void) shareVideo:(CDVInvokedUrlCommand *)command
+{
+    if ([command.arguments count] == 0) {
+        CDVPluginResult *pluginResult;
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
+                                         messageAsString:@"No arguments provided"];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        return;
+    }
+    
+    NSMutableDictionary *options = [[command.arguments lastObject] mutableCopy];
+    NSString *videoAssetUrl = options[@"url"];
+    if (videoAssetUrl != nil) {
+        NSURL *videoURL = [NSURL URLWithString:videoAssetUrl];
+        FBSDKShareVideo *video = [[FBSDKShareVideo alloc] init];
+        video.videoURL = videoURL;
+        FBSDKShareVideoContent *content = [[FBSDKShareVideoContent alloc] init];
+        content.video = video;
+        
+        self.dialogCallbackId = command.callbackId;
+        
+        FBSDKShareDialog *dialog = [[FBSDKShareDialog alloc] init];
+        dialog.fromViewController = [self topMostController];
+        dialog.shareContent = content;
+        dialog.mode = FBSDKShareDialogModeShareSheet;
+        [dialog show];
+    }
+}
+
 #pragma mark - Utility methods
 
 - (void) loginWithPermissions:(NSArray *)permissions withHandler:(FBSDKLoginManagerRequestTokenHandler) handler {

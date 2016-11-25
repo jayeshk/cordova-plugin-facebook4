@@ -47,6 +47,10 @@ exports.appInvite = function appLinks (options, s, f) {
   exec(s, f, 'FacebookConnectPlugin', 'appInvite', [options])
 }
 
+exports.shareVideo = function shareVideo (options, s, f) {
+    exec(s, f, 'FacebookConnectPlugin', 'shareVideo', [options])
+}
+
 exports.getDeferredApplink = function (s, f) {
   exec(s, f, 'FacebookConnectPlugin', 'getDeferredApplink', [])
 }

@@ -27,4 +27,6 @@
 - (void)appInvite:(CDVInvokedUrlCommand *) command;
 - (void)getDeferredApplink:(CDVInvokedUrlCommand *) command;
 - (void)activateApp:(CDVInvokedUrlCommand *)command;
+- (void)shareVideo:(CDVInvokedUrlCommand *)command;
+
 @end
