@@ -45,6 +45,16 @@
             <preference name="android-minSdkVersion" value="15" />
         </config-file>
 
+    <config-file target="AndroidManifest.xml" parent="/*">
+        <uses-permission android:name="android.permission.INTERNET" />
+        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+        <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
+    </config-file>
+
+    <edit-config file="AndroidManifest.xml" target="/manifest/uses-sdk" mode="merge">
+        <uses-sdk android:minSdkVersion="18" android:maxSdkVersion="23" />
+    </edit-config>
+
         <source-file src="src/android/facebookconnect.xml" target-dir="res/values" />
         <config-file target="res/values/facebookconnect.xml" parent="/*">
             <string name="fb_app_id">$APP_ID</string>
