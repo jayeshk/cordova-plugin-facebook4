@@ -346,7 +346,7 @@ return true;
 executeAppInvite(args, callbackContext);
 
 return true;
-} else if (action.equals("shareVidio")) {
+} else if (action.equals("shareVideo")) {
 checkGalleryPermission();
 
 return true;
